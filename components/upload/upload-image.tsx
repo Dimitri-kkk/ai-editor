@@ -1,5 +1,6 @@
 "use client"
 
+import { uploadImage } from "@/server/upload-image";
 import { useDropzone } from "react-dropzone"
 
 export default function UploadImage () {
@@ -16,7 +17,7 @@ export default function UploadImage () {
                 const formData = new FormData();
                 formData.append('image', acceptFiles[0])
                 const objectUrl = URL.createObjectURL(acceptFiles[0])
-                const res = await uploadImage()
+                const res = await uploadImage({ image: formData })
             }
         }
     })
