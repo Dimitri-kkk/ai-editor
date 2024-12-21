@@ -3,7 +3,7 @@ import { StoreApi, useStore } from "zustand"
 import React from "react"
 import { persist, createJSONStorage } from "zustand/middleware"
 
-const createZustandContext = <TInitial, TStore extends StoreApi<any>>(
+export const createZustandContext = <TInitial, TStore extends StoreApi<any>>(
   getStore: (initial: TInitial) => TStore
 ) => {
   const Context = React.createContext(null as any as TStore)
