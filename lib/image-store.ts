@@ -10,11 +10,13 @@ type State = {
 
 }
 
-const getStore = () => {
+const getStore = (initialState: {
+    generating: boolean
+    }) => {
     return createStore<State>()(
         persist(
             (set) => ({
-                generating: false,
+                generating: initialState.generating,
                 setGenerating: (generating) => set({generating})
             }), 
             {name: "images-store", storage: createJSONStorage(() => localStorage)}
