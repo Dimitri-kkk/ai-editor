@@ -16,7 +16,7 @@ export default function Home() {
       publicId: "",
     }]}}>
     <ImageStore.Provider initialValue={{ generating: false }}>
-      <main className="">
+      <main className="h-full">
         <Editor />
       </main>
     </ImageStore.Provider>

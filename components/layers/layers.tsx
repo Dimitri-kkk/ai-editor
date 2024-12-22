@@ -2,6 +2,8 @@ import { useLayerStore } from "@/lib/zustand-context";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { cn } from "@/lib/utils";
 import { useImageStore } from "@/lib/image-store";
+import { Button } from "../ui/button";
+import { Layers2 } from "lucide-react";
 
 export default function Layers() {
     const layers = useLayerStore((state) => state.layers);
@@ -36,6 +38,12 @@ export default function Layers() {
                   </div>
                 )}
             </CardContent>
+            <div className="sticky bottom-0 bg-card flex gap-2 shrink-0">
+                <Button className="w-full flex gap-2" variant={"outline"}>
+                    <span>Create Layer</span>
+                    <Layers2 size={18} className="text-secondary-foreground" />
+                </Button>
+            </div>
         </Card>
     )
 }
