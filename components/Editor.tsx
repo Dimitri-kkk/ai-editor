@@ -1,5 +1,6 @@
 "use client"
 
+import { ModeToggle } from "@/components/theme/mode-toggle"
 import Layers from "./layers/layers"
 import UploadImage from "./upload/upload-image"
 
