@@ -62,6 +62,8 @@ export default function UploadImage () {
         }
     })
 
+    if(!activeLayer.url)
+
     return (
         <Card {...getRootProps()} 
         className={cn(
