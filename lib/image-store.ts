@@ -2,7 +2,7 @@ import React from "react"
 import { useStore } from "zustand"
 import { createJSONStorage, persist } from "zustand/middleware"
 import { createStore } from "zustand/vanilla"
-import { createZustandContext } from './zustand-context';
+import { createZustandContext } from './store';
 
 type State = {
     generating: boolean,

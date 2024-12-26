@@ -2,7 +2,8 @@
 
 import Editor from "@/components/Editor";
 import { ImageStore } from "@/lib/image-store";
-import { LayerStore } from "@/lib/zustand-context";
+import { LayerStore } from "@/lib/layer-store";
+
 
 export default function Home() {
   return (

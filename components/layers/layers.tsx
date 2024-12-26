@@ -1,4 +1,4 @@
-import { useLayerStore } from "@/lib/zustand-context";
+import { useLayerStore } from "@/lib/layer-store";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { cn } from "@/lib/utils";
 import { useImageStore } from "@/lib/image-store";
