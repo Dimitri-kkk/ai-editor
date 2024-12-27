@@ -11,7 +11,7 @@ export default function ActiveImage() {
     if(!activeLayer.url) return null
 
     const renderLayer = (layer: Layer) => (
-        <div>
+        <div className="relative w-full h-full flex items-center justify-center">
             {layer.resourceType === "image" && (
             <Image src={layer.url!} alt={layer.name!} fill={true} className={cn("rounded-lg object-contain", generating ? "animate-pulse" : "")}/>)}
             {layer.resourceType === "video" && (
