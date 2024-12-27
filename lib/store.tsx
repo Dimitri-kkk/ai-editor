@@ -60,7 +60,7 @@ const getStore = (initialState: {
   )
 }
 
-export const ImageStore = createZustandContext(getStore)
+export const ImageStore = createZustandContext(getStore);
 
 export function useImageStore<T>(selector: (state: State) => T) {
   const store = React.useContext(ImageStore.Context)

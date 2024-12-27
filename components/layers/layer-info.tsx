@@ -12,6 +12,7 @@ import {
   import { Button } from "../ui/button"
   import { Ellipsis, EllipsisIcon, Trash, Trash2 } from "lucide-react"
   import { Layer, useLayerStore } from "@/lib/layer-store"
+  import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 
   export default function LayerInfo({layer, layerIndex}: {layer: Layer, layerIndex: number}){
     const layers = useLayerStore((state) => state.layers) 
@@ -26,6 +27,9 @@ import {
                 </Button>
             </DialogTrigger>
             <DialogContent>
+                <VisuallyHidden>
+                    <DialogTitle>Layer Information</DialogTitle>
+                </VisuallyHidden>
                 <h3 className="text-lg font-medium text-center mb-2">
                     Layer {layer.id}
                 </h3>
