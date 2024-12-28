@@ -5,11 +5,13 @@ import { actionClient } from "@/lib/safe-action"
 import { v2 as cloudinary } from "cloudinary"
 import { z } from "zod"
 
+
 cloudinary.config({
     cloudinary_name: process.env.CLOUDINARY_NAME,
     api_key: process.env.CLOUDINARY_KEY,
     api_secret: process.env.CLOUDINARY_SECRET,
 })
+
 
 const genRemoveSchema = z.object({
     prompt: z.string(),
@@ -24,15 +26,16 @@ export const genRemove = actionClient.schema(genRemoveSchema).action(async ({par
     const maxAttempts = 20
     const delay = 500
     for(let attempt = 0; attempt < maxAttempts; attempt++) {
-        isProcessed = await checkImageProcessing(removeUrl);
+        isProcessed = await checkImageProcessing(removeUrl) ?? false;
         if(isProcessed) {
             break
         }
         await new Promise((resolve) => setTimeout(resolve, delay))
-
-        if(!isProcessed) {
-            throw new Error("image not processed")
-        }
-        return {success: removeUrl}
     }
+
+    if(!isProcessed) {
+        throw new Error("image not processed")
+    }
+
+    return {success: removeUrl}
 })
