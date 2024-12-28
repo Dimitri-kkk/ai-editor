@@ -7,7 +7,7 @@ import { z } from "zod"
 
 
 cloudinary.config({
-    cloudinary_name: process.env.CLOUDINARY_NAME,
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_KEY,
     api_secret: process.env.CLOUDINARY_SECRET,
 })
