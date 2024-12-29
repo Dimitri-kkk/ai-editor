@@ -31,7 +31,7 @@ export default function ActiveImage() {
     if(layerComparisonMode && comparedLayers.length > 0) {
         const comparisonLayers = comparedLayers.map((id) => layers.find((l) => l.id === id)).filter(Boolean) as Layer[]
         return (
-            <div>
+            <div className="w-full relative h-svh p-24 bg-secondary flex flex-col items-center justify-center">
                 <ImageComparison layers={comparisonLayers} />
             </div>
         )
