@@ -21,6 +21,26 @@ export default function GenerativeFill() {
     const [height, setHeight] = useState(0)
     const PREVIEW_SIZE = 250
     const EXPANSION_THRESHOLD = 250
+    const ExpansionIndicator = ({value, axis}: {value: number, axis: 'x' | 'y'}) => {
+        const isVisible = Math.abs(value) >= EXPANSION_THRESHOLD
+        const position = axis === 'x' ? {
+            top: '50%',
+            [value > 0 ? 'right' : 'left']: 0,
+            transform: 'translateY(-50%)'
+        } : 
+        {
+            left: "50%",
+            [value > 0 ? 'bottom' : 'top']: 0,
+            tansform: 'translateX(-50%)'
+        }
+      return(
+        {isVisible} && <div style={position}
+        className="absolute bg-primary text-white px-2 py-1 rounded-md text-xs font-bold">
+            {Math.abs(value)}px
+        </div>
+      )
+    }
+    
     const previewStyle = useMemo(() => {
         if(!activeLayer.width || !activeLayer.height) return {}
         const newWidth = activeLayer.width + width
@@ -35,6 +55,31 @@ export default function GenerativeFill() {
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             position: "relative" as const,
+        }
+    }, [activeLayer, width, height])
+
+    const previewOverlayStyle = useMemo(() => {
+        if(!activeLayer.width || !activeLayer.height) return {}
+        const scale = Math.min(
+            PREVIEW_SIZE / (activeLayer.width + width),
+            PREVIEW_SIZE / (activeLayer.height + height)
+        )
+
+        const leftWidth = width > 0 ? `${(width / 2) * scale}px` : "0"
+        const rightWidth = width > 0 ? `${(width / 2) * scale}px` : "0"
+        const topHeight = height > 0 ? `${(height / 2) * scale}px` : "0"
+        const bottomHeight = height > 0 ? `${(height / 2) * scale}px` : "0"
+    
+        return {
+          position: "absolute" as const,
+          top: "0",
+          left: "0",
+          right: "0",
+          bottom: "0",
+          boxShadow: `inset ${leftWidth} ${topHeight} 0 rgba(48, 119, 255, 1), 
+                      inset -${rightWidth} ${topHeight} 0 rgba(48, 119, 255, 1), 
+                      inset ${leftWidth} -${bottomHeight} 0 rgba(48, 119, 255, 1), 
+                      inset -${rightWidth} -${bottomHeight} 0 rgba(48, 119, 255,1)`,
         }
     }, [activeLayer, width, height])
 
@@ -102,7 +147,7 @@ export default function GenerativeFill() {
                 }} className="preview-container flex flex-grow justify-center items-center overflow-hidden m-auto">
                     <div style={previewStyle}>
                         <div className="animate-pulse" style={previewOverlayStyle}>
-                            
+
                         </div>
                     </div>
                 </div>
