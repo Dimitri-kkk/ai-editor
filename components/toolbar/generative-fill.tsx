@@ -20,26 +20,7 @@ export default function GenerativeFill() {
     const [width, setWidth] = useState(0) 
     const [height, setHeight] = useState(0)
     const PREVIEW_SIZE = 250
-    const EXPANSION_THRESHOLD = 250
     
-    const ExpansionIndicator = ({value, axis}: {value: number, axis: 'x' | 'y'}) => {
-        const position = axis === 'x' ? {
-            top: '50%',
-            [value > 0 ? 'right' : 'left']: 0,
-            transform: 'translateY(-50%)'
-        } : 
-        {
-            left: "50%",
-            [value > 0 ? 'bottom' : 'top']: 0,
-            transform: 'translateX(-50%)'
-        }
-      return(
-        <div style={position}
-        className="absolute bg-primary text-white px-2 py-1 rounded-md text-xs font-bold">
-            {Math.abs(value)}px
-        </div>
-      )
-    }
     
     const previewStyle = useMemo(() => {
         if(!activeLayer.width || !activeLayer.height) return {}

@@ -6,7 +6,7 @@ import UploadImage from "./upload-image"
 
 export default function UploadForm(){
     const activeLayer = useLayerStore((state) => state.activeLayer)
-    const [selectedType, setSelectedType] = useState('image');
+    const [selectedType] = useState('image');
 
     if(!activeLayer.url)
         return (

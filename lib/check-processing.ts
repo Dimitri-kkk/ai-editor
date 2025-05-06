@@ -5,6 +5,7 @@ export async function checkImageProcessing(url: string) {
             return true
         }
     } catch (error) {
+        console.error("Error checking image processing:", error)
         return false
     }
 }
