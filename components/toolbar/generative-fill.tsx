@@ -4,7 +4,7 @@ import { useLayerStore } from "@/lib/layer-store"
 import { useImageStore } from "@/lib/image-store"
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
 import { Button } from "../ui/button"
-import { Crop, Image } from "lucide-react"
+import { Crop } from "lucide-react"
 import { bgRemove } from "@/server/bg-remove"
 import { useMemo, useState } from "react"
 import { Label } from "../ui/label"
@@ -21,8 +21,8 @@ export default function GenerativeFill() {
     const [height, setHeight] = useState(0)
     const PREVIEW_SIZE = 250
     const EXPANSION_THRESHOLD = 250
+    
     const ExpansionIndicator = ({value, axis}: {value: number, axis: 'x' | 'y'}) => {
-        const isVisible = Math.abs(value) >= EXPANSION_THRESHOLD
         const position = axis === 'x' ? {
             top: '50%',
             [value > 0 ? 'right' : 'left']: 0,
@@ -31,10 +31,10 @@ export default function GenerativeFill() {
         {
             left: "50%",
             [value > 0 ? 'bottom' : 'top']: 0,
-            tansform: 'translateX(-50%)'
+            transform: 'translateX(-50%)'
         }
       return(
-        {isVisible} && <div style={position}
+        <div style={position}
         className="absolute bg-primary text-white px-2 py-1 rounded-md text-xs font-bold">
             {Math.abs(value)}px
         </div>
